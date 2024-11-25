@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MessageSquare, Clock, School, Hammer, Calendar } from "lucide-react";
 import Zoom from "react-medium-image-zoom";
+import { User } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-medium-image-zoom/dist/styles.css"; // Estilos de zoom
 
@@ -56,6 +57,7 @@ const MainPage = () => {
             <Hammer className="w-7 h-7 mr-2 text-blue-800" />
             <span className="font-thin text-3xl">Talleres</span>
           </Link>
+
           <div className="mt-6 flex justify-center">
             <img
               src="/public/logo-universidad-marista.png"
@@ -63,6 +65,7 @@ const MainPage = () => {
               className="h-48 w-auto relative left-20"
             />
           </div>
+          
         </div>
 
         <div className="w-full sm:w-full ml-10 justify-end">
@@ -90,6 +93,7 @@ const MainPage = () => {
               </TransformWrapper>
             </div>
           </div>
+          
         </div>
       </main>
 
@@ -105,11 +109,21 @@ const MainPage = () => {
           experiencia universitaria mediante una interfaz sencilla y
           herramientas fáciles de usar.
         </p>
+        
         <img
           src="/public/MIM_2.png"
           alt="Logo MIM"
           className="w-auto h-auto h-48"
         />
+        <div className="flex justify-end mt-6">
+       <Link
+           to="/admin"
+           className="flex items-center p-1 bg-blue-800 text-white rounded-xl shadow-lg hover:bg-purple-600 transition-colors w-auto h-10"
+          >
+        <User className="w-5 h-5 mr-2" />
+          <span className="font-thin text-md">Panel de Administración</span>
+        </Link>
+      </div>
       </section>
     </div>
   );

@@ -6,6 +6,7 @@ import Salones from "./pages/Salones";
 import Talleres from "./pages/Talleres";
 import Mural from "./pages/Mural";
 import Calendar from "./pages/Calendar";
+import Dashboard from "./admin/Dashboard";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/talleres" element={<Talleres />} />
         <Route path="/mural" element={<Mural />} />
         <Route path="/calendario" element={<Calendar />} />
+        <Route path="/admin" element={<Dashboard />} />
       </Routes>
     </Router>
   );
