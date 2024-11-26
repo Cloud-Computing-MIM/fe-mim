@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { MessageSquare, Clock, School, Hammer, Calendar } from "lucide-react";
-import Zoom from "react-medium-image-zoom";
 import { User } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-medium-image-zoom/dist/styles.css"; // Estilos de zoom
@@ -73,12 +72,11 @@ const MainPage = () => {
             <h2 className="text-5xl font-thin mb-4">Mapa Interactivo UMG</h2>
             <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden">
               <TransformWrapper
-                defaultScale={1}
                 minScale={0.5}
                 maxScale={5}
                 wheel={{ step: 0.1 }} // Controla el zoom con la rueda
               >
-                {({ zoomIn, zoomOut, resetTransform }) => (
+                {({  }) => (
                   <>
                     <div className="absolute top-0 right-0 p-4 space-x-2 z-10"></div>
                     <TransformComponent>
@@ -117,7 +115,7 @@ const MainPage = () => {
         />
         <div className="flex justify-end mt-6">
        <Link
-           to="/admin"
+           to="/login"
            className="flex items-center p-1 bg-blue-800 text-white rounded-xl shadow-lg hover:bg-purple-600 transition-colors w-auto h-10"
           >
         <User className="w-5 h-5 mr-2" />
