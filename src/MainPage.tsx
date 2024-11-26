@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { MessageSquare, Clock, School, Hammer, Calendar } from "lucide-react";
 import { User } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import "react-medium-image-zoom/dist/styles.css"; // Estilos de zoom
+import "react-medium-image-zoom/dist/styles.css";
+import { BsFillPinMapFill } from "react-icons/bs"; // Estilos de zoom
 
 const MainPage = () => {
   return (
@@ -19,15 +20,17 @@ const MainPage = () => {
         <div className="flex flex-col items-start  sm:w-1/3 mb-6 sm:mb-0 justify-start mr-130">
           <Link
             to="/calendario"
-            className="flex items-center justify-start p-4 bg-white rounded-xl shadow-lg hover:bg-blue-100 transition-colors w-full mb-4"
+            className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <Calendar className="w-7 h-7 mr-2 text-blue-800" />
-            <span className="font-thin text-3xl">Calendario</span>
+            <Calendar className="w-7 h-7 mr-2 text-blue-800 transition-all duration-300 transform group-hover:scale-110 group-focus:scale-110" />
+            <span className="font-thin text-3xl transition-all duration-300 group-hover:text-blue-600">Calendario</span>
           </Link>
 
           <Link
             to="/foro"
-            className="flex items-center justify-start p-4 bg-white rounded-xl shadow-lg hover:bg-blue-100 transition-colors w-full mb-4"
+            className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <MessageSquare className="w-7 h-7 mr-2 text-blue-800" />
             <span className="font-thin text-3xl">Foro</span>
@@ -35,28 +38,32 @@ const MainPage = () => {
 
           <Link
             to="/horarios"
-            className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-colors w-full mb-4"
+            className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <Clock className="w-7 h-7 mr-2 text-blue-800" />
             <span className="font-thin text-3xl">Horarios</span>
           </Link>
-
-          <Link
-            to="/salones"
-            className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-colors w-full mb-4"
-          >
-            <School className="w-7 h-7 mr-2 text-blue-800" />
-            <span className="font-thin text-3xl">Salones</span>
+            <Link
+               to="/salones"
+               className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
+               transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+              <School className="w-7 h-7 mr-2 text-blue-800 transition-all duration-300 transform group-hover:scale-110 group-focus:scale-110" />
+               <span className="font-thin text-3xl transition-all duration-300 group-hover:text-blue-600">
+            Salones
+              </span>
           </Link>
-
           <Link
             to="/talleres"
-            className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-colors w-full"
-          >
-            <Hammer className="w-7 h-7 mr-2 text-blue-800" />
-            <span className="font-thin text-3xl">Talleres</span>
-          </Link>
-
+            className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full 
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+            <Hammer className="w-7 h-7 mr-2 text-blue-800 transition-all duration-300 transform group-hover:scale-110 group-focus:scale-110" />
+            <span className="font-thin text-3xl transition-all duration-300 group-hover:text-blue-600">
+            Talleres
+           </span>
+        </Link>
           <div className="mt-6 flex justify-center">
             <img
               src="/public/logo-universidad-marista.png"
@@ -64,12 +71,14 @@ const MainPage = () => {
               className="h-48 w-auto relative left-20"
             />
           </div>
-          
         </div>
-
         <div className="w-full sm:w-full ml-10 justify-end">
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h2 className="text-5xl font-thin mb-4">Mapa Interactivo UMG</h2>
+            
+            <h2 className="text-4xl font-thin mb-4">
+              Mapa Interactivo UMG
+              <BsFillPinMapFill className="w-full h-12  mr-2 text-red-800 " />
+              </h2>
             <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden">
               <TransformWrapper
                 minScale={0.5}
@@ -96,33 +105,45 @@ const MainPage = () => {
       </main>
 
       {/* Sección explicativa del proyecto */}
-      <section className="bg-white p-6 mt-8 rounded-lg shadow-md">
-        <h2 className="text-xl font-arial-narrow mb-4">Acerca del Proyecto:</h2>
-        <p className="text-md text-gray-700">
-          Este proyecto, <strong>Módulo de Información Marista (MIM)</strong>,
-          está diseñado para ofrecer información útil y accesible para la
-          comunidad de la Universidad Marista. A través de esta plataforma, los
-          usuarios pueden acceder a recursos como mapas interactivos, horarios
-          de clases, foros de discusión, y más. Nuestro objetivo es mejorar la
-          experiencia universitaria mediante una interfaz sencilla y
-          herramientas fáciles de usar.
-        </p>
-        
-        <img
-          src="/public/MIM_2.png"
-          alt="Logo MIM"
-          className="w-auto h-auto h-48"
-        />
-        <div className="flex justify-end mt-6">
-       <Link
-           to="/login"
-           className="flex items-center p-1 bg-blue-800 text-white rounded-xl shadow-lg hover:bg-purple-600 transition-colors w-auto h-10"
-          >
-        <User className="w-5 h-5 mr-2" />
-          <span className="font-thin text-md">Panel de Administración</span>
-        </Link>
+      <section className="bg-white p-6 mt-8 rounded-lg shadow-lg hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 m-5 hover:bg-blue-400">
+  <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all ">
+    <h2 className="text-3xl font-semibold text-blue-800 mb-4 text-center font-thin italic">Acerca del Proyecto</h2>
+    
+    {/* Párrafo con hover */}
+    <p className="text-lg text-gray-700 leading-relaxed mb-4 transition-colors duration-300 hover:text-blue-900 font-thin text-justify">
+      Este proyecto, <strong className="text-blue-600 font-bold">Módulo de Información Marista (MIM)</strong>,
+      está diseñado para ofrecer información útil y accesible para la comunidad de la Universidad Marista.
+      A través de esta plataforma, los usuarios pueden acceder a recursos como mapas interactivos, horarios de clases,
+      foros de discusión, y más. Nuestro objetivo es mejorar la experiencia universitaria mediante una interfaz sencilla y
+      herramientas fáciles de usar.
+    </p>
+
+    {/* Imagen con hover */}
+    <div className="relative mb-6">
+      <img
+        src="/public/MIM_2.png"
+        alt="Logo MIM"
+        className="mx-auto w-full max-w-xs rounded-lg shadow-xl transition-transform duration-500 ease-in-out transform hover:scale-130 hover:bg-cyan-100"
+      />
+      {/* Texto flotante sobre la imagen */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white text-sm px-4 py-2 rounded-full shadow-lg opacity-80 hover:opacity-100 transition-opacity italic font-thin">
+        "Ser para Servir"
       </div>
-      </section>
+    </div>
+
+    {/* Botón Panel de Administración */}
+    <div className="flex justify-center mt-8">
+      <Link
+        to="/login"
+        className="flex items-center p-3 bg-blue-800 text-white rounded-xl shadow-lg hover:bg-purple-600 transition-colors w-auto h-12"
+      >
+        <User className="w-5 h-5 mr-2" />
+        <span className="font-thin text-md">Panel de Administración</span>
+      </Link>
+    </div>
+  </div>
+</section>
+
     </div>
   );
 };
