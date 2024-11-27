@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Tabs,
@@ -37,7 +37,17 @@ import { BiSolidHappyBeaming } from "react-icons/bi";
 import { FcAnswers, FcSearch } from "react-icons/fc";
 import { GiNewspaper, GiAcousticMegaphone } from "react-icons/gi";
 import { IoCalendarOutline, IoHome } from "react-icons/io5";
+import supabase from "../lib/supabaseClient";
 
+interface novedades{
+  mes: string;
+  title: string;
+  text: string;
+} 
+interface mural{
+  tipo: string;
+  text: string;
+}
 export default function ForoPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -54,6 +64,23 @@ export default function ForoPage() {
   const returnMainPage = () => {
     navigate("/");
   };
+  //NOVEDADES 
+  const [novedades, setNovedades] = useState<novedades[]>([]);
+  console.log(novedades, "novedades");
+  useEffect(() => {
+    const fetchNovedades = async () => {
+      const { data, error } = await supabase
+        .from('ForoNovedades')
+        .select('*');
+      if (error) {
+        console.error("Error fetching novedades:", error);
+      } else {
+        setNovedades(data);
+      }
+    };
+
+    fetchNovedades();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100  border-blue-900 ">
@@ -143,42 +170,51 @@ export default function ForoPage() {
           </TabsList>
           <TabsContent value="notices">
             <div className="grid gap-4 md:grid-cols-2 m">
-              <Card className="mt-12 p-6 border border-blue-900 shadow-xl">
-                <CardHeader>
-                  <RiAdminFill className="ml-4 text-3xl text-blue-600" />
-                  <CardTitle className="font-thin">
-                    Avisos a Coordinadores
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <h3 className="text-lg font-italic font-thin  text-gray-900 mb-4">
-                    Mes: Noviembre 2024
-                  </h3>
-                  <ul className="list-disc pl-5 space-y-2 font-thin">
-                    <li>Reunión de coordinación el próximo lunes</li>
-                    <li>Entrega de informes mensuales</li>
-                    <li>Actualización de syllabus para el próximo semestre</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="mt-12 p-6 border border-blue-900 shadow-xl">
-                <CardHeader>
-                  <FaUniversity className="ml-4 text-3xl text-blue-600" />
-                  <CardTitle className="font-thin ">
-                    Avisos de la Universidad
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <h4 className="text-lg font-italic font-thin  text-gray-900 mb-4">
-                    Mes: Noviembre 2024
-                  </h4>
-                  <ul className="font-thin list-disc pl-5 space-y-2">
-                    <li>Ceremonia de graduación el 15 de julio</li>
-                    <li>Mantenimiento de la biblioteca este fin de semana</li>
-                    <li>Nuevos cursos de verano disponibles</li>
-                  </ul>
-                </CardContent>
-              </Card>
+            <Card className="mt-12 p-6">
+  <CardHeader>
+    <RiAdminFill className="ml-4 text-3xl text-blue-600" />
+    <CardTitle className="font-thin">
+      Avisos a Coordinadores
+    </CardTitle>
+  </CardHeader>
+      <CardContent>
+        <h3 className="text-lg font-italic font-thin text-gray-900 mb-4">
+          Mes:
+          {novedades
+            .filter((novedad) => novedad.title === 'coordinadores')
+            .map((novedad, index) => (
+              <div key={index}>
+                <strong>{novedad.mes}</strong>
+                <p>{novedad.text}</p>
+              </div>
+            ))}
+        </h3>
+        <ul className="list-disc pl-5 space-y-2 font-thin"></ul>
+      </CardContent>
+    </Card>
+
+    <Card className="mt-12 p-6">
+      <CardHeader>
+        <FaUniversity className="ml-4 text-3xl text-blue-600" />
+        <CardTitle className="font-thin">
+          Avisos de la Universidad
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <h3 className="text-lg font-italic font-thin text-gray-900 mb-4">
+          Mes:
+          {novedades
+            .filter((novedad) => novedad.title === 'universidad')
+            .map((novedad, index) => (
+              <div key={index}>
+                <strong>{novedad.mes}</strong>
+                <p>{novedad.text}</p>
+              </div>
+            ))}
+        </h3>
+        <ul className="list-disc pl-5 space-y-2 font-thin"></ul>
+      </CardContent>
+    </Card>
             </div>
             <div className="flex justify-center mt-6">
               <img src="/public/maristas_3.jpg" className="w-50 h-80" />
@@ -446,3 +482,5 @@ export default function ForoPage() {
     </div>
   );
 }
+
+
