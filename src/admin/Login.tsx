@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useAuth } from './context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import { FaUserAlt } from 'react-icons/fa' // Importamos el ícono
+import { FaUserAlt } from 'react-icons/fa' 
+import { IoHome } from 'react-icons/io5' 
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -20,11 +21,14 @@ const Login: React.FC = () => {
       setError('Invalid email or password')
     }
   }
+  const returnToMainPage = () => {
+    navigate('/')
+  }
 
   return (
     <div className="min-h-screen bg-gray-200 ">
       {/* Header */}
-        <header className="bg-blue-900 text-white w-full flex items-center justify-between p-4">
+        <header className="bg-blue-900 text-white w-full flex items-center justify-between p-4 border-8 border-gray-900">
           <div className="flex flex-col">
             <h1 className="text-8xl font-thin mt-2">MIM</h1>
               <h2 className="text-3xl font-thin">Modulo de Información Marista</h2>
@@ -32,13 +36,19 @@ const Login: React.FC = () => {
               <FaUserAlt className="text-white-600 text-3xl" />
           </div>
           <img src="/public/MIM_2.png" alt="Logo MIM" className="h-40" />
+          <button
+          onClick={returnToMainPage}
+          className="inline-block bg-blue-500 text-white p-2 rounded-full text-xl hover:bg-blue-600 shadow-lg transition"
+        >
+          <IoHome className="text-xl" />
+        </button>
           </header>
 
       {/* Main content area */}
-      <main className="flex items-top  justify-center min-h-screen bg-gray-400 py-14 px-4 sm:px-6 lg:px-8">
+      <main className="flex items-top  justify-center min-h-screen bg-gray-400 py-14 px-4 sm:px-6 lg:px-8 border-8 border-gray-900">
         <div className="max-w-md w-full space-y-8">
           {/* Card with Login form */}
-          <div className="bg-white shadow-xl rounded-lg p-10">
+          <div className="bg-white shadow-xl rounded-lg p-10 border-blue-900 border-2">
             <div className="flex justify-center items-center space-x-2 mb-6">
               <FaUserAlt className="text-purple-600 text-3xl" />
               <h2 className="text-3xl font-thin text-gray-900 items-center">Sign in 
@@ -56,7 +66,8 @@ const Login: React.FC = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-900 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-blue-900 placeholder-gray-900 text-gray-900
+                     rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                     placeholder="Institutional Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -70,7 +81,8 @@ const Login: React.FC = () => {
                     type="password"
                     autoComplete="current-password"
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-900 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-blue-900 placeholder-gray-900 text-gray-900 
+                    rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-purple-500 focus:z-10 sm:text-sm"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -83,7 +95,8 @@ const Login: React.FC = () => {
               <div>
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white
+                   bg-blue-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Sign in
                 </button>
