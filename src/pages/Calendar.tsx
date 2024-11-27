@@ -44,13 +44,6 @@ export default function CalendarPage() {
       return [];
     }
 
-    if (!data) {
-      console.log('No se encontraron archivos');
-      return [];
-    }
-
-    console.log('Data:', data);
-
     const mapped = data.map((file) => {
       const { data: urlData } = supabase.storage
         .from('Calendarios')
@@ -61,8 +54,6 @@ export default function CalendarPage() {
         url: urlData.publicUrl,
       };
     });
-
-    console.log('Mapped files:', mapped);
     return mapped;
   }
 
@@ -121,20 +112,24 @@ export default function CalendarPage() {
           </h1>
 
           {/* Botones para seleccionar semestre */}
-          <div className="flex justify-center mb-6">
-            <button
+            {files.length > 0 && (
+            <div className="flex justify-center mb-6">
+              <button
               onClick={() => setSemester("2024-A")}
               className={`p-2 px-6 rounded-lg mr-4 font-thin ${semester === "2024-A" ? "bg-blue-300 text-white" : "bg-gray-200"}`}
-            >
-              2024-A
-            </button>
-            <button
-              onClick={() => setSemester("2024-B")}
-              className={`p-2 px-6 rounded-lg font-thin ${semester === "2024-B" ? "bg-blue-300 text-white" : "bg-gray-200"}`}
-            >
-              2024-B
-            </button>
-          </div>
+              >
+              {files[0].name}
+              </button>
+              {files.length > 1 && (
+              <button
+                onClick={() => setSemester("2024-B")}
+                className={`p-2 px-6 rounded-lg font-thin ${semester === "2024-B" ? "bg-blue-300 text-white" : "bg-gray-200"}`}
+              >
+                {files[1].name}
+              </button>
+              )}
+            </div>
+            )}
 
           {/* Mostrar semestre seleccionado */}
           <div className="text-center mb-6 font-thin">
