@@ -42,14 +42,14 @@ const Login: React.FC = () => {
             <div className="flex justify-center items-center space-x-2 mb-6">
               <FaUserAlt className="text-purple-600 text-3xl" />
               <h2 className="text-3xl font-thin text-gray-900 items-center">Sign in 
-              <h3 className="text-sm font-semibold  text-gray-900">With your Instititucional E-mail </h3>
+              <h3 className="text-sm font-semibold  text-gray-900">With your Institutional E-mail </h3>
               </h2>
             </div>
             
             <form className="space-y-6" onSubmit={handleLogin}>
               <div className="rounded-md shadow-sm -space-y-px p-2" >
                 <div>
-                  <label htmlFor="email-address" className="sr-only">Email address</label>
+                  <label htmlFor="email-address" className="sr-only">E-mail address</label>
                   <input
                     id="email-address"
                     name="email"
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
                     autoComplete="email"
                     required
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-900 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-                    placeholder="Institucional Address"
+                    placeholder="Institutional Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
