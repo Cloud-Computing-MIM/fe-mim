@@ -69,7 +69,7 @@ export default function CalendarPage() {
         ))}
       </ul>
       {/* Comienza con el encabezado (Header) */}
-      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between">
+      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between border-b-2 border-blue-900 border-l-4 border-r-4">
         <div className="flex items-center space-x-4">
           {/* Logo de MIM */}
           <img src="/public/MIM_2.png" alt="Logo MIM" className="h-20 w-20" />
@@ -103,9 +103,9 @@ export default function CalendarPage() {
       </header>
 
       {/* Contenido principal de la página */}
-      <div className="p-4">
+      <div className="p-4 border-2 border-blue-900 border-l-4 border-r-4">
         {/*Hacemos un card para mas bonito */}
-        <Card className="p-6 shadow-lg mb-6">
+        <Card className="p-6 shadow-lg mb-6 border-blue-300 border-2">
           <h1 className="text-3xl font-thin text-5xl text-center mb-6 flex items-center justify-center text-blue-900 ">
             <FaCalendarDay className="ml-2 text-5xl relative right-5" />
             <span className="mr-2">Calendario de Ciclo Escolar actual</span>
@@ -141,7 +141,7 @@ export default function CalendarPage() {
 
         {/* Calendario para el semestre 2024-A */}
         {semester === "2024-A" && files.length > 0 &&(
-          <Card className="p-6 shadow-lg mb-6">
+          <Card className="p-6 shadow-lg mb-6 border-2 border-blue-300">
             <div className="card-header p-4">
               <h2 className="text-2xl font-thin font-semibold text-blue-400">
                 {files[0].name}

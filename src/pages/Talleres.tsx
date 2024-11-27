@@ -258,7 +258,7 @@ export default function Talleres() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between">
+      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between border-r-2 border-l-2 border-b-4 border-blue-900">
         <div className="flex items-center space-x-4">
           {/* Logo de MIM */}
           <img src="/public/MIM_2.png" alt="Logo MIM" className="h-20 w-20" />
@@ -289,7 +289,7 @@ export default function Talleres() {
       </header>
 
       {/* Card que contiene todo el contenido de la página */}
-      <Card className="mt-6">
+      <Card className="mt-6 border-2 border-blue-900">
         <CardHeader>
           <CardTitle className="text-3xl font-thin mb-6">
             Actividades Extracurriculares y Talleres
@@ -299,14 +299,14 @@ export default function Talleres() {
         <CardContent>
           {/* Tabs para mostrar los talleres */}
           <Tabs defaultValue="all">
-            <TabsList className="grid w-full grid-cols-3 ">
-              <TabsTrigger value="all" className="font-thin ">
+            <TabsList className="grid w-full grid-cols-3 bg-blue-100 ">
+              <TabsTrigger value="all" className="font-thin border border-blue-500">
                 All Workshops
               </TabsTrigger>
-              <TabsTrigger value="cultural" className="font-thin">
+              <TabsTrigger value="cultural" className="font-thin border border-blue-500">
                 Cultural
               </TabsTrigger>
-              <TabsTrigger value="sports" className="font-thin">
+              <TabsTrigger value="sports" className="font-thin border border-blue-500">
                 Sports
               </TabsTrigger>
             </TabsList>
@@ -333,7 +333,7 @@ export default function Talleres() {
           </Tabs>
 
           {/* Formulario de inscripción */}
-          <Card className="mt-6">
+          <Card className="mt-6 border-2 border-blue-900">
             <CardHeader>
               <CardTitle className="font-thin">Inscripcion</CardTitle>
               <CardDescription className="font-thin">
@@ -348,8 +348,9 @@ export default function Talleres() {
                     onValueChange={setSelectedWorkshop}
                     value={selectedWorkshop}
                   >
-                    <SelectTrigger id="workshop">
-                      <SelectValue placeholder="Select a workshop" />
+                    <SelectTrigger id="workshop"
+                    className="border-2 border-blue-900" >
+                      <SelectValue placeholder="Select a workshop"/>
                     </SelectTrigger>
                     <SelectContent>
                       {workshops.map((workshop) => (
@@ -370,6 +371,17 @@ export default function Talleres() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
+                    className="border-2 border-blue-900" 
+                  />
+                </div>
+                <div className="space-y-2 font-semibold">
+                  <Label htmlFor="lastName">Apellido</Label>
+                  <Input
+                    id="lastName"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    className="border-2 border-blue-900" 
                   />
                 </div>
                 <div className="space-y-2 font-semibold">
@@ -380,6 +392,7 @@ export default function Talleres() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="border-2 border-blue-900" 
                   />
                 </div>
 
