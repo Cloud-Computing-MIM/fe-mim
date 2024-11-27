@@ -7,8 +7,8 @@ import { BsFillPinMapFill } from "react-icons/bs"; // Estilos de zoom
 
 const MainPage = () => {
   return (
-    <div className="min-h-screen bg-gray-100 m-1 ">
-      <header className="bg-blue-200 text-white w-full flex items-center justify-between">
+    <div className="min-h-screen bg-gray-100 ">
+      <header className="bg-blue-200 text-white w-full flex items-center justify-between p-5 border border-black" >
         <div className="flex flex-col">
           <h1 className="text-8xl font-thin mt-2">MIM </h1>
           <h2 className="text-3xl font-thin">Módulo de Información Marista</h2>
