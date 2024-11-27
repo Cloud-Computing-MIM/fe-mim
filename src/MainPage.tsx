@@ -6,8 +6,8 @@ import "react-medium-image-zoom/dist/styles.css";
 import { BsFillPinMapFill } from "react-icons/bs"; 
 const MainPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-400" >
-      <header className="bg-blue-200 text-white w-full flex items-center justify-between p-5 border-4 border-blue-900" >
+    <div className="min-h-screen bg-gray-100" >
+      <header className="bg-blue-200 text-white w-full flex items-center justify-between p-5 border-b-2 border-blue-900" >
         <div className="flex flex-col">
           <h1 className="text-8xl font-thin mt-2">MIM </h1>
           <h2 className="text-3xl font-thin">Módulo de Información Marista</h2>
@@ -72,13 +72,13 @@ const MainPage = () => {
           </div>
         </div>
         <div className="w-full sm:w-full ml-10 justify-end">
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6 border-4 border-purple-900">
+          <div className="bg-white rounded-lg shadow-md p-6 mb-6 shadow-2xl">
             
             <h2 className="text-4xl font-thin mb-4">
               Mapa Interactivo UMG
               <BsFillPinMapFill className="w-full h-12  mr-2 text-red-800 " />
               </h2>
-            <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden border-2 border-purple-900">
+            <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden border-blue-900">
               <TransformWrapper
                 minScale={0.5}
                 maxScale={5}
@@ -91,7 +91,7 @@ const MainPage = () => {
                       <img
                         src="/public/maps.png" // Ruta a tu imagen
                         alt="Mapa de la universidad"
-                        className="w-full h-full object-cover cursor-pointer border-8 border-gray-800"
+                        className="w-full h-full object-cover cursor-pointer border-1 border-gray-800"
                       />
                     </TransformComponent>
                   </>
@@ -104,8 +104,8 @@ const MainPage = () => {
       </main>
 
       {/* Sección explicativa del proyecto */}
-      <section className="bg-white p-6 mt-8 rounded-lg shadow-lg hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 m-5 hover:bg-blue-400 border-4 border-blue-900 bg-gradient-to-r from-gray-100 to-gray-400">
-  <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all border-4 border-blue-800">
+      <section className="bg-white p-6 mt-8 rounded-lg shadow-lg hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 m-5 hover:bg-blue-400 border-2 border-blue-900 bg-white-200">
+  <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all border-2 border-blue-800">
     <h2 className="text-3xl font-semibold text-blue-800 mb-4 text-center font-thin italic">Acerca del Proyecto</h2>
     
     {/* Párrafo con hover */}

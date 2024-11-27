@@ -15,8 +15,7 @@ const AdminDashboard: React.FC = () => {
   const navigate = useNavigate()
    {/* Estado para calendario */}
     const [selectedSection, setSelectedSection] = useState('calendario');
-    const [selectedSubSection, setSelectedSubSection] = useState('foro');
-    const [selectedCalendario, setSelectedCalendario] = useState('');
+    const [ setSelectedCalendario] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
     const [selectedCalendar, setSelectedCalendar] = useState('');
   const handleLogout = () => {
@@ -27,14 +26,8 @@ const AdminDashboard: React.FC = () => {
   const handleSelectCalendario = (calendario: string) => {
     setSelectedCalendario(calendario);
   };
-  const handleYearSelect = (year, calendar) => {
-    setSelectedYear(year);
-    setSelectedCalendar(calendar);
-  };
 
-  const handleSaveChanges = () => {
-    alert(`Cambios guardados: ${selectedYear} - ${selectedCalendar}`);
-  };
+
   const handleSelectSection = (section: string) => {
     setSelectedSection(section)
   }
@@ -236,143 +229,8 @@ const AdminDashboard: React.FC = () => {
 
 {/* Contenido dinámico según la selección */}
 <div>
-  {selectedSection === 'calendario' && (
-    <div className="mt-6">
-      <h2 className="text-xl font-semibold">Seleccione el Calendario</h2>
-
-      {/* Contenedor con scroll para seleccionar el calendario */}
-      <div className="mt-4 space-y-4">
-        <div className="flex space-x-4">
-          <button
-            onClick={() => handleSelectCalendario('2024-A')}
-            className={`px-4 py-2 rounded-md ${selectedCalendario === '2024-A' ? 'bg-purple-500 text-white' : 'bg-gray-200'}`}
-          >
-            Calendario A
-          </button>
-          <button
-            onClick={() => handleSelectCalendario('2024-B')}
-            className={`px-4 py-2 rounded-md ${selectedCalendario === '2024-B' ? 'bg-purple-500 text-white' : 'bg-gray-200'}`}
-          >
-            Calendario B
-          </button>
-        </div>
-
-        {/* Estado del calendario seleccionado */}
-        <div className="mt-4">
-          {selectedCalendario ? (
-            <p className="text-blue-500">Calendario seleccionado: {selectedCalendario}</p>
-          ) : (
-            <p className="text-red-500">Inactivo</p>
-          )}
-        </div>
-      </div>
-
-      {/* Sección para elegir el año y calendario (A/B) con scroll */}
-      {selectedCalendario && (
-        <div className="mt-6 overflow-y-auto max-h-60">
-          <h3 className="text-lg font-semibold italic">Selecciona el año y calendario:</h3>
-          <div className="space-y-4 mt-4">
-            {/* Lista de años del 2022 al 2031 */}
-            {[...Array(10).keys()].map((index) => {
-              const year = 2022 + index;
-              return (
-                <div key={year} className="flex space-x-4">
-                  <button
-                    onClick={() => handleYearSelect(year, 'A')}
-                    className={`px-4 py-2 rounded-md ${selectedYear === year && selectedCalendar === 'A' ? 'bg-blue-200 text-white' : 'bg-gray-200'}`}
-                  >
-                    {year} - Calendario A
-                  </button>
-                  <button
-                    onClick={() => handleYearSelect(year, 'B')}
-                    className={`px-4 py-2 rounded-md ${selectedYear === year && selectedCalendar === 'B' ? 'bg-blue-200 text-white' : 'bg-gray-200'}`}
-                  >
-                    {year} - Calendario B
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Botón para guardar cambios */}
-      {selectedYear && selectedCalendar && (
-        <div className="mt-6">
-          <button
-            onClick={handleSaveChanges}
-            className="px-6 py-2 bg-purple-900 text-white rounded-md"
-          >
-            Guardar Cambios
-          </button>
-        </div>
-      )}
-    </div>
-  )}
-
-  {/* Otras secciones  FORO*/}
-  {selectedSection === 'foro' && (
-  <div className="mt-10">
-    <h2 className="text-xl font-semibold">Seleccione una sección</h2>
-
-    {/* Contenedor de las secciones del foro, ahora en disposición vertical */}
-    <div className="mt-4 space-y-4">
-      <div className="flex flex-col space-y-4"> {/* Flex-col para disposición vertical con espacio más pequeño */}
-        <button
-          onClick={() => setSelectedSubSection('novedades')}
-          className={`px-3 py-1.5 text-sm  w-auto text-left w-16  ${selectedSubSection === 'novedades' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-        >
-          Novedades
-        </button>
-        <button
-          onClick={() => setSelectedSubSection('preguntas')}
-          className={`px-3 py-1.5 text-sm rounded-md w-full text-left ${selectedSubSection === 'preguntas' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-        >
-          Preguntas Frecuentes
-        </button>
-        <button
-          onClick={() => setSelectedSubSection('contactanos')}
-          className={`px-3 py-1.5 text-sm rounded-md w-full text-left ${selectedSubSection === 'contactanos' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-        >
-          Contáctanos
-        </button>
-        <button
-          onClick={() => setSelectedSubSection('mural')}
-          className={`px-3 py-1.5 text-sm rounded-md w-full text-left ${selectedSubSection === 'mural' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-        >
-          Mural Marista
-        </button>
-        <button
-          onClick={() => setSelectedSubSection('formularios')}
-          className={`px-3 py-1.5 text-sm rounded-md w-full text-left ${selectedSubSection === 'formularios' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-        >
-          Formularios
-        </button>
-      </div>
-      
-      {/* Mostrar contenido de la sección seleccionada */}
-      <div className="mt-4">
-        {selectedSubSection === 'novedades' && (
-          <p>Aquí se visualizarán las novedades del foro.</p>
-        )}
-        {selectedSubSection === 'preguntas' && (
-          <p>Aquí se visualizarán las preguntas frecuentes.</p>
-        )}
-        {selectedSubSection === 'contactanos' && (
-          <p>Aquí se visualizarán las formas de contacto.</p>
-        )}
-        {selectedSubSection === 'mural' && (
-          <p>Aquí se visualizará el mural Marista.</p>
-        )}
-        {selectedSubSection === 'formularios' && (
-          <p>Aquí se visualizarán los formularios disponibles.</p>
-        )}
-      </div>
-    </div>
-  </div>
-)}
-
-
+  {selectedSection === 'calendario' && <p>Aquí se visualizará el calendario.</p>}
+  {selectedSection === 'foro' && <p>Aquí se visualizará el foro.</p>}
   {selectedSection === 'horarios' && <p>Aquí se visualizarán los horarios.</p>}
   {selectedSection === 'salones' && <p>Aquí se visualizarán los salones.</p>}
   {selectedSection === 'talleres' && <p>Aquí se visualizarán los talleres.</p>}
