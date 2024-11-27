@@ -56,9 +56,9 @@ export default function ForoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 border-l-4 border-blue-900 border-r-4">
+    <div className="min-h-screen bg-gray-100  border-blue-900 ">
       {/* empezamos con el screen con un header */}
-      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between border-r-4 border-l-4 border-b-4 border-blue-900">
+      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between  border-b-2 border-blue-900">
         <div className="flex items-center space-x-4">
           {/*logo de MIM*/}
           <img src="/public/MIM_2.png" alt="Logo MIM" className="h-20 w-20" />
@@ -99,7 +99,7 @@ export default function ForoPage() {
               value="notices"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4
                                    rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin  text-lg 
-                                   border border-black-600 border-2 border-blue-900" 
+                                   border border-black-600  border-blue-900 shadow-xl" 
             >
               <span> Novedades</span>
               <TiNews className="ml-4 text-2xl" />
@@ -108,7 +108,7 @@ export default function ForoPage() {
               value="faq"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                               rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg 
-                              border border-black-600 border-2 border-blue-900"
+                              border border-black-600  border-blue-900 shadow-xl"
             >
               <span>Preguntas Frecuentes</span>
               <FaCircleQuestion className="ml-4 text-2xl" />
@@ -117,7 +117,7 @@ export default function ForoPage() {
               value="contact"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                               rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg 
-                              border border-black-600 border-2 border-blue-900"
+                              border border-black-600 border-blue-900 shadow-xl"
             >
               <span>Contáctanos</span>
               <MdConnectWithoutContact className="ml-4 text-2xl" />
@@ -126,7 +126,7 @@ export default function ForoPage() {
               value="forms"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                               rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg 
-                              border border-black-600 border-2 border-blue-900"
+                              border border-black-600 border-blue-900 shadow-xl"
             >
               <span> Formularios</span>
               <SiGoogleforms className="ml-4 text-2xl" />
@@ -135,7 +135,7 @@ export default function ForoPage() {
               value="mural"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                                    rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg
-                                    border border-black-600 border-2 border-blue-900"
+                                    border border-black-600  border-blue-900 shadow-xl"
             >
               <span> Mural Marista</span>
               <FaNewspaper className="ml-4 text-2xl" />
@@ -186,7 +186,7 @@ export default function ForoPage() {
           </TabsContent>
 
           <TabsContent value="faq">
-            <Card className = "mt-10 border-blue-900 border-2 shadow-xl">
+            <Card className = "mt-10 border-blue-900  shadow-xl">
               <CardHeader>
                 <CardTitle className="font-thin">
                   Preguntas Frecuentes
@@ -232,7 +232,7 @@ export default function ForoPage() {
           </TabsContent>
 
           <TabsContent value="contact">
-            <Card className = "mt-10 border-blue-900 border-2 shadow-xl">
+            <Card className = "mt-10 border-blue-900 shadow-xl">
               <CardHeader>
                 <CardTitle className="font-thin">Contáctanos</CardTitle>
                 <CardDescription className="font-thin">
@@ -281,7 +281,7 @@ export default function ForoPage() {
             </Card >
           </TabsContent>
           <TabsContent value="forms">
-            <Card className = "mt-10 border-blue-900 border-2 shadow-xl">
+            <Card className = "mt-10 border-blue-900 shadow-xl">
               <CardHeader></CardHeader>
               <CardContent>
                 <FcAnswers className="ml-4 text-8xl" />

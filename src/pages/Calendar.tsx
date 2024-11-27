@@ -63,7 +63,7 @@ export default function CalendarPage() {
         {files.map((file) => (
           <li key={file.name}>
             <a href={file.url} target="_blank" rel="noopener noreferrer">
-              {file.name}
+              
             </a>
           </li>
         ))}
