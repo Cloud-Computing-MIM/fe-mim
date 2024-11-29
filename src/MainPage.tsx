@@ -3,12 +3,11 @@ import { MessageSquare, Clock, School, Hammer, Calendar } from "lucide-react";
 import { User } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import "react-medium-image-zoom/dist/styles.css";
-import { BsFillPinMapFill } from "react-icons/bs"; // Estilos de zoom
-
+import { BsFillPinMapFill } from "react-icons/bs"; 
 const MainPage = () => {
   return (
-    <div className="min-h-screen bg-gray-100 m-1 ">
-      <header className="bg-blue-200 text-white w-full flex items-center justify-between">
+    <div className="min-h-screen bg-gray-100" >
+      <header className="bg-blue-200 text-white w-full flex items-center justify-between p-5 border-b-2 border-blue-900" >
         <div className="flex flex-col">
           <h1 className="text-8xl font-thin mt-2">MIM </h1>
           <h2 className="text-3xl font-thin">Módulo de Información Marista</h2>
@@ -17,11 +16,11 @@ const MainPage = () => {
       </header>
 
       <main className="container mx-auto p-4 flex flex-col sm:flex-row gap-8  relative right-24">
-        <div className="flex flex-col items-start  sm:w-1/3 mb-6 sm:mb-0 justify-start mr-130">
+        <div className="flex flex-col items-start  sm:w-1/3 mb-6 sm:mb-0 justify-start mr-130 ">
           <Link
             to="/calendario"
             className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
-            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-blue-900 rounded-xl"
           >
             <Calendar className="w-7 h-7 mr-2 text-blue-800 transition-all duration-300 transform group-hover:scale-110 group-focus:scale-110" />
             <span className="font-thin text-3xl transition-all duration-300 group-hover:text-blue-600">Calendario</span>
@@ -30,7 +29,7 @@ const MainPage = () => {
           <Link
             to="/foro"
             className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
-            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-blue-900 rounded-xl"
           >
             <MessageSquare className="w-7 h-7 mr-2 text-blue-800" />
             <span className="font-thin text-3xl">Foro</span>
@@ -39,7 +38,7 @@ const MainPage = () => {
           <Link
             to="/horarios"
             className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
-            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-blue-900 rounded-xl"
           >
             <Clock className="w-7 h-7 mr-2 text-blue-800" />
             <span className="font-thin text-3xl">Horarios</span>
@@ -47,7 +46,7 @@ const MainPage = () => {
             <Link
                to="/salones"
                className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full mb-4 
-               transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+               transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-blue-900 rounded-xl"
               >
               <School className="w-7 h-7 mr-2 text-blue-800 transition-all duration-300 transform group-hover:scale-110 group-focus:scale-110" />
                <span className="font-thin text-3xl transition-all duration-300 group-hover:text-blue-600">
@@ -57,7 +56,7 @@ const MainPage = () => {
           <Link
             to="/talleres"
             className="flex items-center justify-start p-4 bg-white rounded-lg shadow-md hover:bg-blue-100 transition-all duration-300 w-full 
-            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-blue-900 rounded-xl"
             >
             <Hammer className="w-7 h-7 mr-2 text-blue-800 transition-all duration-300 transform group-hover:scale-110 group-focus:scale-110" />
             <span className="font-thin text-3xl transition-all duration-300 group-hover:text-blue-600">
@@ -68,18 +67,18 @@ const MainPage = () => {
             <img
               src="/public/logo-universidad-marista.png"
               alt="Logo UMG"
-              className="h-48 w-auto relative left-20"
+              className="h-48 w-auto relative left-20  rounded-2xl shadow-lg hover:shadow-xl transition-all duration-600"
             />
           </div>
         </div>
         <div className="w-full sm:w-full ml-10 justify-end">
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-md p-6 mb-6 shadow-2xl">
             
             <h2 className="text-4xl font-thin mb-4">
               Mapa Interactivo UMG
               <BsFillPinMapFill className="w-full h-12  mr-2 text-red-800 " />
               </h2>
-            <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden">
+            <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden border-blue-900">
               <TransformWrapper
                 minScale={0.5}
                 maxScale={5}
@@ -87,12 +86,12 @@ const MainPage = () => {
               >
                 {({  }) => (
                   <>
-                    <div className="absolute top-0 right-0 p-4 space-x-2 z-10"></div>
+                    <div className="absolute top-0 right-0 p-4 space-x-2 z-10 "></div>
                     <TransformComponent>
                       <img
                         src="/public/maps.png" // Ruta a tu imagen
                         alt="Mapa de la universidad"
-                        className="w-full h-full object-cover cursor-pointer"
+                        className="w-full h-full object-cover cursor-pointer border-1 border-gray-800"
                       />
                     </TransformComponent>
                   </>
@@ -105,8 +104,8 @@ const MainPage = () => {
       </main>
 
       {/* Sección explicativa del proyecto */}
-      <section className="bg-white p-6 mt-8 rounded-lg shadow-lg hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 m-5 hover:bg-blue-400">
-  <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all ">
+      <section className="bg-white p-6 mt-8 rounded-lg shadow-lg hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 m-5 hover:bg-blue-400 border-2 border-blue-900 bg-white-200">
+  <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all border-2 border-blue-800">
     <h2 className="text-3xl font-semibold text-blue-800 mb-4 text-center font-thin italic">Acerca del Proyecto</h2>
     
     {/* Párrafo con hover */}

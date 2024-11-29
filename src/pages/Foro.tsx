@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Tabs,
@@ -37,7 +37,17 @@ import { BiSolidHappyBeaming } from "react-icons/bi";
 import { FcAnswers, FcSearch } from "react-icons/fc";
 import { GiNewspaper, GiAcousticMegaphone } from "react-icons/gi";
 import { IoCalendarOutline, IoHome } from "react-icons/io5";
+import supabase from "../lib/supabaseClient";
 
+interface novedades{
+  mes: string;
+  title: string;
+  text: string;
+} 
+interface mural{
+  tipo: string;
+  text: string;
+}
 export default function ForoPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -54,11 +64,28 @@ export default function ForoPage() {
   const returnMainPage = () => {
     navigate("/");
   };
+  //NOVEDADES 
+  const [novedades, setNovedades] = useState<novedades[]>([]);
+  console.log(novedades, "novedades");
+  useEffect(() => {
+    const fetchNovedades = async () => {
+      const { data, error } = await supabase
+        .from('ForoNovedades')
+        .select('*');
+      if (error) {
+        console.error("Error fetching novedades:", error);
+      } else {
+        setNovedades(data);
+      }
+    };
+
+    fetchNovedades();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 ">
+    <div className="min-h-screen bg-gray-100  border-blue-900 ">
       {/* empezamos con el screen con un header */}
-      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between">
+      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between  border-b-2 border-blue-900">
         <div className="flex items-center space-x-4">
           {/*logo de MIM*/}
           <img src="/public/MIM_2.png" alt="Logo MIM" className="h-20 w-20" />
@@ -99,7 +126,7 @@ export default function ForoPage() {
               value="notices"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4
                                    rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin  text-lg 
-                                   border border-black-600 "
+                                   border border-black-600  border-blue-900 shadow-xl" 
             >
               <span> Novedades</span>
               <TiNews className="ml-4 text-2xl" />
@@ -108,7 +135,7 @@ export default function ForoPage() {
               value="faq"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                               rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg 
-                              border border-black-600"
+                              border border-black-600  border-blue-900 shadow-xl"
             >
               <span>Preguntas Frecuentes</span>
               <FaCircleQuestion className="ml-4 text-2xl" />
@@ -117,7 +144,7 @@ export default function ForoPage() {
               value="contact"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                               rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg 
-                              border border-black-600"
+                              border border-black-600 border-blue-900 shadow-xl"
             >
               <span>Contáctanos</span>
               <MdConnectWithoutContact className="ml-4 text-2xl" />
@@ -126,7 +153,7 @@ export default function ForoPage() {
               value="forms"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                               rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg 
-                              border border-black-600"
+                              border border-black-600 border-blue-900 shadow-xl"
             >
               <span> Formularios</span>
               <SiGoogleforms className="ml-4 text-2xl" />
@@ -135,7 +162,7 @@ export default function ForoPage() {
               value="mural"
               className="text-md bg-gray-200 text-gray-900 hover:text-blue-600 hover:bg-blue-100 active:bg-blue-100 active:text-blue-900 transition-colors p-4 
                                    rounded-lg text-center w-auto h-auto data-[state=active]:bg-blue-200 mb-3 font-thin text-lg
-                                    border border-black-600"
+                                    border border-black-600  border-blue-900 shadow-xl"
             >
               <span> Mural Marista</span>
               <FaNewspaper className="ml-4 text-2xl" />
@@ -143,42 +170,51 @@ export default function ForoPage() {
           </TabsList>
           <TabsContent value="notices">
             <div className="grid gap-4 md:grid-cols-2 m">
-              <Card className="mt-12 p-6">
-                <CardHeader>
-                  <RiAdminFill className="ml-4 text-3xl text-blue-600" />
-                  <CardTitle className="font-thin">
-                    Avisos a Coordinadores
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <h3 className="text-lg font-italic font-thin  text-gray-900 mb-4">
-                    Mes: Noviembre 2024
-                  </h3>
-                  <ul className="list-disc pl-5 space-y-2 font-thin">
-                    <li>Reunión de coordinación el próximo lunes</li>
-                    <li>Entrega de informes mensuales</li>
-                    <li>Actualización de syllabus para el próximo semestre</li>
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="mt-12 p-6">
-                <CardHeader>
-                  <FaUniversity className="ml-4 text-3xl text-blue-600" />
-                  <CardTitle className="font-thin">
-                    Avisos de la Universidad
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <h4 className="text-lg font-italic font-thin  text-gray-900 mb-4">
-                    Mes: Noviembre 2024
-                  </h4>
-                  <ul className="font-thin list-disc pl-5 space-y-2">
-                    <li>Ceremonia de graduación el 15 de julio</li>
-                    <li>Mantenimiento de la biblioteca este fin de semana</li>
-                    <li>Nuevos cursos de verano disponibles</li>
-                  </ul>
-                </CardContent>
-              </Card>
+            <Card className="mt-12 p-6">
+  <CardHeader>
+    <RiAdminFill className="ml-4 text-3xl text-blue-600" />
+    <CardTitle className="font-thin">
+      Avisos a Coordinadores
+    </CardTitle>
+  </CardHeader>
+      <CardContent>
+        <h3 className="text-lg font-italic font-thin text-gray-900 mb-4">
+          Mes:
+          {novedades
+            .filter((novedad) => novedad.title === 'coordinadores')
+            .map((novedad, index) => (
+              <div key={index}>
+                <strong>{novedad.mes}</strong>
+                <p>{novedad.text}</p>
+              </div>
+            ))}
+        </h3>
+        <ul className="list-disc pl-5 space-y-2 font-thin"></ul>
+      </CardContent>
+    </Card>
+
+    <Card className="mt-12 p-6">
+      <CardHeader>
+        <FaUniversity className="ml-4 text-3xl text-blue-600" />
+        <CardTitle className="font-thin">
+          Avisos de la Universidad
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <h3 className="text-lg font-italic font-thin text-gray-900 mb-4">
+          Mes:
+          {novedades
+            .filter((novedad) => novedad.title === 'universidad')
+            .map((novedad, index) => (
+              <div key={index}>
+                <strong>{novedad.mes}</strong>
+                <p>{novedad.text}</p>
+              </div>
+            ))}
+        </h3>
+        <ul className="list-disc pl-5 space-y-2 font-thin"></ul>
+      </CardContent>
+    </Card>
             </div>
             <div className="flex justify-center mt-6">
               <img src="/public/maristas_3.jpg" className="w-50 h-80" />
@@ -186,7 +222,7 @@ export default function ForoPage() {
           </TabsContent>
 
           <TabsContent value="faq">
-            <Card>
+            <Card className = "mt-10 border-blue-900  shadow-xl">
               <CardHeader>
                 <CardTitle className="font-thin">
                   Preguntas Frecuentes
@@ -232,7 +268,7 @@ export default function ForoPage() {
           </TabsContent>
 
           <TabsContent value="contact">
-            <Card>
+            <Card className = "mt-10 border-blue-900 shadow-xl">
               <CardHeader>
                 <CardTitle className="font-thin">Contáctanos</CardTitle>
                 <CardDescription className="font-thin">
@@ -278,10 +314,10 @@ export default function ForoPage() {
                   </Button>
                 </form>
               </CardContent>
-            </Card>
+            </Card >
           </TabsContent>
           <TabsContent value="forms">
-            <Card>
+            <Card className = "mt-10 border-blue-900 shadow-xl">
               <CardHeader></CardHeader>
               <CardContent>
                 <FcAnswers className="ml-4 text-8xl" />
@@ -352,7 +388,7 @@ export default function ForoPage() {
           </TabsContent>
           <TabsContent value="mural">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="flex flex-col items-center">
+              <Card className="flex flex-col items-center mt-10 border-blue-900 border-2 shadow-xl">
                 <CardHeader className="text-center mb-4">
                   <GiNewspaper className="text-8xl text-blue-800" />
                   <CardTitle className="font-thin">Deportivos</CardTitle>
@@ -378,7 +414,7 @@ export default function ForoPage() {
                   </a>
                 </CardContent>
               </Card>
-              <Card className="flex flex-col items-center">
+              <Card className="flex flex-col items-center mt-10 border-blue-900 border-2 shadow-xl">
                 <CardHeader className="text-center mb-4">
                   <GiNewspaper className="text-8xl text-blue-800" />{" "}
                   {/* Ícono de color azul */}
@@ -408,7 +444,7 @@ export default function ForoPage() {
                   </a>
                 </CardContent>
               </Card>
-              <Card className="flex flex-col items-center">
+              <Card className="flex flex-col items-center mt-10 border-blue-900 border-2 shadow-xl">
                 <CardHeader className="text-center mb-4">
                   <GiNewspaper className="text-8xl text-blue-800" />
                   <CardTitle className="font-thin">Eventos del Mes</CardTitle>
@@ -446,3 +482,5 @@ export default function ForoPage() {
     </div>
   );
 }
+
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createClient, Session } from '@supabase/supabase-js';
 import { FaUserAlt } from 'react-icons/fa';
-import '../index.css';
+import { IoHome } from 'react-icons/io5' 
 
 const supabase = createClient(
   'https://uxxgdrzwgymksrcqkdcf.supabase.co',
@@ -48,6 +48,10 @@ const Login: React.FC = () => {
     }
   };
 
+  const returnToMainPage = () => {
+    navigate('/')
+  };
+
   if (!session) {
     return (
       <div className="min-h-screen bg-gray-200">
@@ -60,6 +64,12 @@ const Login: React.FC = () => {
           <FaUserAlt className="text-white-600 text-3xl" />
         </div>
         <img src="/public/MIM_2.png" alt="Logo MIM" className="h-40" />
+        <button
+          onClick={returnToMainPage}
+          className="inline-block bg-blue-500 text-white p-2 rounded-full text-xl hover:bg-blue-600 shadow-lg transition"
+        >
+          <IoHome className="text-xl" />
+        </button>
       </header>
       
       <main className="flex items-center justify-center min-h-screen bg-gray-400 py-14 px-4 sm:px-6 lg:px-8">
@@ -121,6 +131,7 @@ const Login: React.FC = () => {
           <FaUserAlt className="text-white-600 text-3xl" />
         </div>
         <img src="/public/MIM_2.png" alt="Logo MIM" className="h-40" />
+
       </header>
 
       {/* Main content */}

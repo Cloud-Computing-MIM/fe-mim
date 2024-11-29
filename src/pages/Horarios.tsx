@@ -62,10 +62,10 @@ export default function HorariosPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 border-r-4 border-l-4 border-blue-900">
       {/* Header azul */}
-      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between border-b-4 border-l-2 border-r-2 border-blue-900">
+        <div className="flex items-center space-x-4 ">
           {/* Logo de MIM */}
           <img src="/public/MIM_2.png" alt="Logo MIM" className="h-20 w-20" />
           <h1 className="text-5xl mt-2 font-thin">MIM</h1>
@@ -95,7 +95,7 @@ export default function HorariosPage() {
       </header>
 
       {/* Card para seleccionar opciones */}
-      <Card className="max-w-4xl mx-auto mb-6 mt-8">
+      <Card className="max-w-4xl mx-auto mb-6 mt-8 border-blue-900 border-2 shadow-xl">
         {/* Encabezado de Horarios */}
         <CardHeader>
           <div className="flex items-center justify-center">
@@ -108,7 +108,7 @@ export default function HorariosPage() {
         {/* Contenido de la Card */}
         <CardContent>
           {/* Card para seleccionar categoría */}
-          <Card className="mb-6">
+          <Card className="mb-6 border-2 border-blue-900 shadow-xl">
             <CardHeader>
               <CardTitle className="font-thin">
                 Selecciona la categoría
@@ -120,7 +120,7 @@ export default function HorariosPage() {
                 value={selectedCategory}
                 onValueChange={handleCategoryChange}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full border-cyan-400 border-2 shadow-md">
                   <SelectValue placeholder="Category.." />
                 </SelectTrigger>
                 <SelectContent>
@@ -135,14 +135,14 @@ export default function HorariosPage() {
           </Card>
 
           {/* Card para seleccionar carrera */}
-          <Card className="mb-6">
+          <Card className="mb-6 border-2 border-blue-900 shadow-xl">
             <CardHeader>
               <CardTitle className="font-thin">Selecciona tu carrera</CardTitle>
               <AiOutlineSchedule className="ml-2 text-3xl text-blue-400" />
             </CardHeader>
             <CardContent>
               <Select value={selectedCareer} onValueChange={setSelectedCareer}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full border-cyan-400 border-2 shadow-md">
                   <SelectValue placeholder="Career.." />
                 </SelectTrigger>
                 <SelectContent>
@@ -158,7 +158,7 @@ export default function HorariosPage() {
           </Card>
 
           {/* Card para seleccionar semestre */}
-          <Card className="mb-6">
+          <Card className="mb-6 border-2 border-blue-900 shadow-xl">
             <CardHeader>
               <CardTitle className="font-thin">
                 Selecciona tu semestre
@@ -167,7 +167,7 @@ export default function HorariosPage() {
             </CardHeader>
             <CardContent>
               <Select>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full border-cyan-400 border-2 shadow-md">
                   <SelectValue placeholder="Semester..." />
                 </SelectTrigger>
                 <SelectContent>

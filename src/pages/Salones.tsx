@@ -63,9 +63,9 @@ export default function RoomsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 border-r-4 border-l-4 border-blue-900">
       {/* Header */}
-      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between">
+      <header className="bg-blue-200 text-white p-4 w-full flex items-center justify-between border-b-4 border-l-2 border-r-2 border-blue-900">
         <div className="flex items-center space-x-4">
           {/* Logo de MIM */}
           <img src="/public/MIM_2.png" alt="Logo MIM" className="h-20 w-20" />
@@ -96,7 +96,7 @@ export default function RoomsPage() {
       </header>
       {/* Contenido principal de la página */}
       <div className="container mx-auto p-4">
-        <Card className="mt-6">
+        <Card className="mt-6 border-2 border-blue-900">
           <CardHeader>
             <CardTitle className="font-thin text-3xl">
               Organización de Salones
@@ -105,10 +105,16 @@ export default function RoomsPage() {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="all">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="all">All Rooms</TabsTrigger>
-                <TabsTrigger value="degree">Degree Rooms</TabsTrigger>
-                <TabsTrigger value="language">Language Rooms</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 bg-blue-200">
+                <TabsTrigger value="all"
+                            className="border border-blue-500"
+                >All Rooms</TabsTrigger>
+                <TabsTrigger value="degree"
+                            className="border border-blue-500"
+                >Degree Rooms</TabsTrigger>
+                <TabsTrigger value="language"
+                            className="border border-blue-500"
+                >Language Rooms</TabsTrigger>
               </TabsList>
 
               <TabsContent value="all">
@@ -131,7 +137,7 @@ export default function RoomsPage() {
         </Card>
 
         {/* Reserve a Room Section */}
-        <Card className="mt-6">
+        <Card className="mt-6 border-blue-900 border-2">
           <CardHeader>
             <CardTitle>Reserve a Room</CardTitle>
             <CardDescription>
@@ -143,7 +149,8 @@ export default function RoomsPage() {
               <div className="space-y-2">
                 <Label htmlFor="room">Select Room</Label>
                 <Select onValueChange={(value) => setSelectedRoom(value)}>
-                  <SelectTrigger id="room">
+                  <SelectTrigger id="room"
+                   className="border-2 border-cyan-200">
                     <SelectValue placeholder="Select a room" />
                   </SelectTrigger>
                   <SelectContent>
@@ -162,7 +169,7 @@ export default function RoomsPage() {
                   required={true}
                   selected={reservationDate}
                   onSelect={(date) => setReservationDate(date)}
-                  className="rounded-md border"
+                  className="rounded-md border-2 border-cyan-300"
                 />
               </div>
               <Button type="submit">Reserve Room</Button>
