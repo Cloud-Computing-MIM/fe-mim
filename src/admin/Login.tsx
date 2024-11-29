@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { createClient, Session } from '@supabase/supabase-js';
 import { FaUserAlt } from 'react-icons/fa';
-import { IoHome } from 'react-icons/io5' 
+import { IoHome } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 const supabase = createClient(
   'https://uxxgdrzwgymksrcqkdcf.supabase.co',
@@ -47,7 +48,7 @@ const Login: React.FC = () => {
       setSession(data.session);
     }
   };
-
+  const navigate = useNavigate();
   const returnToMainPage = () => {
     navigate('/')
   };
