@@ -1,99 +1,150 @@
-import React, { useState } from 'react'
-import { useAuth } from './context/AuthContext'
-import { useNavigate } from 'react-router-dom'
-import { FaUserAlt } from 'react-icons/fa' // Importamos el ícono
+import React, { useState, useEffect } from 'react';
+import { createClient, Session } from '@supabase/supabase-js';
+import { FaUserAlt } from 'react-icons/fa';
+import '../index.css';
+
+const supabase = createClient(
+  'https://uxxgdrzwgymksrcqkdcf.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV4eGdkcnp3Z3lta3NyY3FrZGNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAzMjk0NjQsImV4cCI6MjA0NTkwNTQ2NH0.D8g5sogQtKObLCNCgw7gtArAs45SmYh6XlZCx2JFURo'
+);
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const { login } = useAuth()
-  const navigate = useNavigate()
+  const [session, setSession] = useState<Session | null>(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-    try {
-      await login(email, password)
-      navigate('/admin')
-    } catch (error) {
-      setError('Invalid email or password')
+  useEffect(() => {
+    // Get the current session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    // Listen for changes in authentication state
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    // Cleanup subscription on unmount
+    return () => {
+      data?.subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleSignIn = async () => {
+    setLoading(true);
+    setError('');
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setLoading(false);
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setSession(data.session);
     }
-  }
+  };
+
+  if (!session) {
+    return (
+      <div className="min-h-screen bg-gray-200">
+        {/* Header */}
+      <header className="bg-blue-900 text-white w-full flex items-center justify-between p-4">
+        <div className="flex flex-col">
+          <h1 className="text-8xl font-thin mt-2">MIM</h1>
+          <h2 className="text-3xl font-thin">Modulo de Información Marista</h2>
+          <h3 className="text-2xl font-thin italic">Admin Panel</h3>
+          <FaUserAlt className="text-white-600 text-3xl" />
+        </div>
+        <img src="/public/MIM_2.png" alt="Logo MIM" className="h-40" />
+      </header>
+      
+      <main className="flex items-center justify-center min-h-screen bg-gray-400 py-14 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white shadow-xl rounded-lg p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+            Welcome to MIM
+          </h2>
+          {error && (
+            <p className="text-sm text-red-600 mb-2 text-center">{error}</p>
+          )}
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 border rounded-md text-gray-900"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border rounded-md text-gray-900"
+              placeholder="Enter your password"
+            />
+          </div>
+          <div className="flex justify-center">
+            <button
+              onClick={handleSignIn}
+              disabled={loading}
+              className="w-1/2 mr-2 py-2 px-4 bg-blue-900 text-white rounded-md hover:bg-purple-700"
+            >
+              {loading ? 'Signing In...' : 'Sign In'}
+            </button>
+          </div>
+          
+        </div>
+      </main>
+    </div>
+  );
+}
 
   return (
-    <div className="min-h-screen bg-gray-200 ">
+    <div className="min-h-screen bg-gray-200">
       {/* Header */}
-        <header className="bg-blue-900 text-white w-full flex items-center justify-between p-4">
-          <div className="flex flex-col">
-            <h1 className="text-8xl font-thin mt-2">MIM</h1>
-              <h2 className="text-3xl font-thin">Modulo de Información Marista</h2>
-              <h3 className="text-2xl font-thin italic">Admin Panel</h3>
-              <FaUserAlt className="text-white-600 text-3xl" />
+      <header className="bg-blue-900 text-white w-full flex items-center justify-between p-4">
+        <div className="flex flex-col">
+          <h1 className="text-8xl font-thin mt-2">MIM</h1>
+          <h2 className="text-3xl font-thin">Modulo de Información Marista</h2>
+          <h3 className="text-2xl font-thin italic">Admin Panel</h3>
+          <FaUserAlt className="text-white-600 text-3xl" />
+        </div>
+        <img src="/public/MIM_2.png" alt="Logo MIM" className="h-40" />
+      </header>
+
+      {/* Main content */}
+      <main className="flex items-center justify-center min-h-screen bg-gray-400 py-14 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white shadow-xl rounded-lg p-10">
+          <div className="text-center">
+            <FaUserAlt className="text-purple-600 text-3xl mb-4" />
+            <h2 className="text-3xl font-thin text-gray-900">Welcome!</h2>
+            <p className="text-sm font-semibold text-gray-900 mt-2">
+              Logged in as: {session?.user.email}
+            </p>
           </div>
-          <img src="/public/MIM_2.png" alt="Logo MIM" className="h-40" />
-          </header>
-
-      {/* Main content area */}
-      <main className="flex items-top  justify-center min-h-screen bg-gray-400 py-14 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          {/* Card with Login form */}
-          <div className="bg-white shadow-xl rounded-lg p-10">
-            <div className="flex justify-center items-center space-x-2 mb-6">
-              <FaUserAlt className="text-purple-600 text-3xl" />
-              <h2 className="text-3xl font-thin text-gray-900 items-center">Sign in 
-              <h3 className="text-sm font-semibold  text-gray-900">With your Instititucional E-mail </h3>
-              </h2>
-            </div>
-            
-            <form className="space-y-6" onSubmit={handleLogin}>
-              <div className="rounded-md shadow-sm -space-y-px p-2" >
-                <div>
-                  <label htmlFor="email-address" className="sr-only">Email address</label>
-                  <input
-                    id="email-address"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-900 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-                    placeholder="Institucional Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="password" className="sr-only">Password</label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-900 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              {error && <div className="text-red-500 text-sm">{error}</div>}
-
-              <div>
-                <button
-                  type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Sign in
-                </button>
-              </div>
-            </form>
+          <div className="mt-6">
+            <button
+              onClick={() => supabase.auth.signOut()}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Sign Out
+            </button>
           </div>
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
